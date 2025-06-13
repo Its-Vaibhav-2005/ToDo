@@ -1,0 +1,4 @@
+Flask==3.0.3
+Flask-WTF==1.2.1  # Optional: For form handling if you plan to use Flask forms
+Flask-SQLAlchemy==3.1.1  # Optional: ORM layer for SQLite
+WTForms==3.1.2  # For better form validation (optional but handy)

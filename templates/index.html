@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Let's Do - Todo App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#4CAF50">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<div class="container fade-in">
+
+    <!-- Dark Mode Toggle -->
+    <div style="text-align: right; margin-bottom: 10px;">
+        <label>
+            <input type="checkbox" id="darkModeToggle"> Dark Mode
+        </label>
+    </div>
+
+    <h1>Let's Do</h1>
+
+    <!-- Removed action & method -->
+    <form id="todoForm">
+        <input type="text" id="taskInput" name="task" placeholder="Enter new task" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <p id="status"></p>
+
+    <ul>
+        {% for todo in todos %}
+            <li class="fade-in {% if todo[2] %}completed{% endif %}">
+                {{ todo[1] }}
+                <div>
+                    {% if not todo[2] %}
+                        <a href="{{ url_for('completeTask', id=todo[0]) }}" style="color: green;">Complete</a>
+                    {% endif %}
+                    <a href="{{ url_for('deleteTask', id=todo[0]) }}" style="color: red;">Delete</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
